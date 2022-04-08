@@ -1,5 +1,8 @@
 package jm.task.core.jdbc.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -7,56 +10,38 @@ import javax.persistence.Table;
 @Table
 public class User {
     @Id
+    @Getter
+    @Setter
     private Long id;
 
     @Column
+    @Getter
+    @Setter
     private String name;
 
     @Column
+    @Getter
+    @Setter
     private String lastName;
 
     @Column
+    @Getter
+    @Setter
     private Byte age;
 
     public User() {
 
     }
 
-    public User(String name, String lastName, Byte age) {
+    public User(String name, String lastName, byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
     }
 
-    public Long getId() {
-        return id;
-    }
+    @Override
+    public String toString() {
+        return ">>..Юзер:"+name+" "+lastName+", отроду годиков "+age+", Порядковый номер - "+id+"..<<";
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Byte getAge() {
-        return age;
-    }
-
-    public void setAge(Byte age) {
-        this.age = age;
     }
 }
