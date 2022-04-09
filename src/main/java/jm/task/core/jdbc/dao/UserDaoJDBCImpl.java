@@ -43,7 +43,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void saveUser(String name, String lastName, byte age) {
         char s = 39;
         String sql = "INSERT INTO test1 (name,lastname,age)" +
-                "VALUES" + "(" + s + name + s + "," + s + lastName + s + "," + s + age + s + ")";
+                "VALUES" + "(" + s + name + s + "," + s + lastName + s + "," + age  + ")";
         try (Statement statement = Util.connect().createStatement()) {
             statement.execute(sql);
             System.out.println("Юзер с именем - " + name + " добавлен в базу");
