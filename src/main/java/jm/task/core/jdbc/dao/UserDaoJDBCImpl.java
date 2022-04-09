@@ -32,7 +32,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement statement = Util.connect().prepareStatement(sqlCreateTable)) {
             statement.execute();
             System.out.println("Таблица добавлена");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Не удалось создать таблицу " + e);
         }
     }
@@ -41,7 +41,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement statement = Util.connect().prepareStatement(sqlDropUsersTable)) {
             statement.execute();
             System.out.println("Таблица удалена");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Не удалось удалить таблицу " + e);
         }
     }
