@@ -1,46 +1,29 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
-
 public class Main {
     public static void main(String[] args) {
-        UserService table = new UserServiceImpl();
-        User user = new User();
-        user.setAge((byte)10);
-        user.setName("Хуйлуша");
-        user.setLastName("Хуйлов");
-        user.setId(1L);
+        UserService userService = new UserServiceImpl();
+        userService.createUsersTable();
+        createUserAndSave();
+//        userService.removeUserById(2);
+        userService.getAllUsers();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
+    }
 
-        User user2 = new User();
-        user2.setAge((byte)9);
-        user2.setName("Денчик");
-        user2.setLastName("Педро");
-        user2.setId(2L);
-
-        User user3 = new User();
-        user3.setAge((byte)8);
-        user3.setName("Шелуха");
-        user3.setLastName("Чпушила");
-        user3.setId(3L);
-
-        User user4 = new User();
-        user4.setAge((byte)7);
-        user4.setName("Чмошник");
-        user4.setLastName("Хуйлов");
-        user4.setId(4L);
-
-        table.createUsersTable();
-        table.cleanUsersTable();
-        table.saveUser(user.getName(), user.getLastName(), user.getAge());
-        table.saveUser(user2.getName(), user.getLastName(), user.getAge());
-        table.saveUser(user3.getName(), user.getLastName(), user.getAge());
-        table.saveUser(user4.getName(), user.getLastName(), user.getAge());
-        table.removeUserById(1);
-        table.getAllUsers();
-        table.dropUsersTable();
+    public static void createUserAndSave() {
+        UserService userService = new UserServiceImpl();
+        User user = new User(1L, "Chlen2", "Lisi2i", (byte) 5);
+        userService.saveUser(user.getName(), user.getLastName(), user.getAge());
+        User user2 = new User(1L, "Chlen3", "Lis3ii", (byte) 35);
+        userService.saveUser(user2.getName(), user2.getLastName(), user2.getAge());
+        User user3 = new User(1L, "4", "Lisii3", (byte) 52);
+        userService.saveUser(user3.getName(), user3.getLastName(), user3.getAge());
+        User user4 = new User(1L, "Chlen5", "Lisi3i", (byte) 54);
+        userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
     }
 }
