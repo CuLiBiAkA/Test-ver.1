@@ -9,7 +9,6 @@ public class Main {
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
         createUserAndSave();
-//        userService.removeUserById(2);
         userService.getAllUsers();
         userService.cleanUsersTable();
         userService.dropUsersTable();
