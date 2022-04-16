@@ -21,10 +21,7 @@
     </build>
 
     <dependencies>
-<!--         Ваши зависимости-->
-         <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <!--         Ваши зависимости-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -32,15 +29,12 @@
             <scope>provided</scope>
         </dependency>
 
-
-
-
         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>4.13.2</version>
-             <scope>test</scope>
-         </dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -59,6 +53,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.0.0.Final</version>
         </dependency>
-     </dependencies>
+    </dependencies>
 
 </project>
