@@ -1,31 +1,89 @@
 package jm.task.core.jdbc.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import java.util.Objects;
 
-@Table
-@Data
-@AllArgsConstructor
+@jakarta.persistence.Entity
+@jakarta.persistence.Table(name = "test")
 public class User {
-    @Id
+    @jakarta.persistence.Id
+    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @jakarta.persistence.Column(name = "id", nullable = false)
     private Long id;
 
-    @Column
+    @jakarta.persistence.Column(name = "name", length = 20)
     private String name;
 
-    @Column
+    @jakarta.persistence.Column(name = "lastName", length = 20)
     private String lastName;
 
-    @Column
-    private Byte age;
+    @Column(name = "age", length = 20)
+    private byte age;
 
+
+    public User() {
+    }
+
+    public User(Long id, String name, String lastName, byte age) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public byte getAge() {
+        return age;
+    }
+
+    public void setAge(Byte age) {
+        this.age = age;
+    }
 
     @Override
     public String toString() {
-        return ">>..Юзер:"+name+" "+lastName+", отроду годиков "+age+", Порядковый номер - "+id+"..<<";
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, age);
     }
 }
