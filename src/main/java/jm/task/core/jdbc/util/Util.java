@@ -19,30 +19,20 @@ public class Util {
     private static final String USERNAME_HIBERNATE = "root";
     private static final String PASSWORD_HIBERNATE = "culuc111653culuc";
 
-    private static SessionFactory sessionFactory;
-    private static Connection connection;
 
-    public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            createSessionFactory();
-        } else {
-            return sessionFactory;
-        }
-        return sessionFactory;
-    }
+    private static Connection connection = createConnect();
+    private static SessionFactory sessionFactory = createSessionFactory();
 
     public static Connection getConnection() {
-        if (connection == null) {
-            createConnect();
-        }
-        else {
-            return connection;
-        }
         return connection;
     }
 
-    public static Connection createConnect() {
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
+    public static Connection createConnect() {
+        if (connection == null) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -55,10 +45,14 @@ public class Util {
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        } else {
+            return connection;
+        }
         return connection;
     }
 
     public static SessionFactory createSessionFactory() {
+        if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
                 configuration
@@ -77,6 +71,9 @@ public class Util {
             } catch (HibernateException e) {
                 e.printStackTrace();
             }
+        } else {
+            return sessionFactory;
+        }
         return sessionFactory;
     }
 }
