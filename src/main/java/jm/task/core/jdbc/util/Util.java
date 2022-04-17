@@ -20,7 +20,6 @@ public class Util {
     private static final String USERNAME_HIBERNATE = "root";
     private static final String PASSWORD_HIBERNATE = "culuc111653culuc";
 
-
     private static Connection connection = createConnect();
     private static SessionFactory sessionFactory = createSessionFactory();
 
@@ -62,7 +61,7 @@ public class Util {
                         .setProperty("hibernate.connection.username", USERNAME_HIBERNATE)
                         .setProperty("hibernate.connection.password", PASSWORD_HIBERNATE)
                         .setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver")
-                        .setProperty("show_sql", "true")
+                        .setProperty("hibernate.show_sql", "true")
                         .setProperty("hibernate.current_session_context_class", "thread");
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

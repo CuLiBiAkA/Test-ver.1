@@ -27,7 +27,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
     }
 
-    public void createOrDropUsersTable(String sql) {
+    public void createAnyRequestSQL(String sql) {
         try (PreparedStatement statement = Util.getConnection().prepareStatement(sql)) {
             statement.execute();
             System.out.println("Операция выполнена");
@@ -37,11 +37,11 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        createOrDropUsersTable(SQL_CREATE_TABLE);
+        createAnyRequestSQL(SQL_CREATE_TABLE);
     }
 
     public void dropUsersTable() {
-        createOrDropUsersTable(SQL_DROP_USERS_TABLE);
+        createAnyRequestSQL(SQL_DROP_USERS_TABLE);
     }
 
     @Override
