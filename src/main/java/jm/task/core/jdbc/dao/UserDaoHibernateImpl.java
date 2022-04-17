@@ -28,14 +28,14 @@ public class UserDaoHibernateImpl implements UserDao {
     public void createAnyRequestSQL(String sql) {
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        try  {
-                NativeQuery<?> nativeQuery = session.createNativeQuery(sql);
-                nativeQuery.executeUpdate();
-                session.getTransaction().commit();
-            } catch (HibernateException e) {
+        try {
+            NativeQuery<?> nativeQuery = session.createNativeQuery(sql);
+            nativeQuery.executeUpdate();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
             transaction.rollback();
             e.printStackTrace();
-            }
+        }
     }
 
     @Override
@@ -67,13 +67,13 @@ public class UserDaoHibernateImpl implements UserDao {
     public void removeUserById(long id) {
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-            try {
-                session.remove(new User(id, "Хуйлуша", "ТвойБатя", (byte) 11));
-                session.getTransaction().commit();
-            } catch (HibernateException e) {
-                transaction.rollback();
-                e.printStackTrace();
-            }
+        try {
+            session.remove(new User(id, "Хуйлуша", "ТвойБатя", (byte) 11));
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -81,13 +81,13 @@ public class UserDaoHibernateImpl implements UserDao {
         List<User> userList = new ArrayList<>();
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-            try {
-                userList = session.createQuery("SELECT i FROM User i", User.class).getResultList();
-                userList.forEach(System.out::println);
-                session.getTransaction().commit();
-            } catch (HibernateException e) {
-                transaction.rollback();
-            }
+        try {
+            userList = session.createQuery("SELECT i FROM User i", User.class).getResultList();
+            userList.forEach(System.out::println);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+        }
         return userList;
     }
 
