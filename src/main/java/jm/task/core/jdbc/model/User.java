@@ -1,31 +1,31 @@
 package jm.task.core.jdbc.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.NoArgsConstructor;
 
-@Table
+@Entity
+@Table(name = "userTable")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column
+    @Column(name = "name", length = 20)
     private String name;
 
-    @Column
+    @Column(name = "lastName", length = 20)
     private String lastName;
 
-    @Column
-    private Byte age;
-
-
-    @Override
-    public String toString() {
-        return ">>..Юзер:"+name+" "+lastName+", отроду годиков "+age+", Порядковый номер - "+id+"..<<";
-
-    }
+    @Column(name = "age", length = 20)
+    private byte age;
 }
